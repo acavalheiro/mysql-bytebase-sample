@@ -23,6 +23,8 @@ jobs:
 
             echo "body $request_body"
 
+            echo "token $TOKEN"
+
           response=$(curl -s -w "%{http_code}" -X POST $API \
             -H "X-SQL-Review-Token: $TOKEN" \
             -H "Content-Type: application/json" \
