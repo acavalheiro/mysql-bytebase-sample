@@ -11,12 +11,17 @@ jobs:
           echo "Start request $API"
 
           pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+
+          echo "pull number $pull_number"
+
           repository=`echo $GITHUB_REPOSITORY`
           request_body=$(jq -n \
             --arg repositoryId "$repository" \
             --arg pullRequestId $pull_number \
             --arg webURL "$GITHUB_SERVER_URL" \
             '$ARGS.named')
+
+            echo "body $request_body"
 
           response=$(curl -s -w "%{http_code}" -X POST $API \
             -H "X-SQL-Review-Token: $TOKEN" \
