@@ -25,7 +25,7 @@ jobs:
 
             echo "token $TOKEN"
 
-          response=$(curl -s -w "%{http_code}" -X POST $API \
+          response=$(curl --verbose -s -w "%{http_code}" -X POST $API \
             -H "X-SQL-Review-Token: $TOKEN" \
             -H "Content-Type: application/json" \
             -d "$request_body")
@@ -34,7 +34,7 @@ jobs:
           -H "X-SQL-Review-Token: $TOKEN" \
           -H "Content-Type: application/json" \
           -d "$request_body")"
-          
+
           echo "::debug::response $response"
 
           http_code=$(tail -n1 <<< "$response")
