@@ -1,7 +1,7 @@
 on: [pull_request]
 jobs:
   bytebase-sql-review:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     name: SQL Review
     steps:
       - name: SQL advise
@@ -11,9 +11,6 @@ jobs:
           echo "Start request $API"
 
           pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-
-          echo "pull number $pull_number"
-
           repository=`echo $GITHUB_REPOSITORY`
           request_body=$(jq -n \
             --arg repositoryId "$repository" \
@@ -21,11 +18,7 @@ jobs:
             --arg webURL "$GITHUB_SERVER_URL" \
             '$ARGS.named')
 
-            echo "body $request_body"
-
-            echo "token $TOKEN"
-
-          response=$(curl -s -w "%{http_code}" -X POST $API \
+          response=$(curl -s -w "%{http_code}" --location $API \
             -H "X-SQL-Review-Token: $TOKEN" \
             -H "Content-Type: application/json" \
             -d "$request_body")
