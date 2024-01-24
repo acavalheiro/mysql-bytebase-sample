@@ -4,8 +4,7 @@
   City VARCHAR(255) DEFAULT NULL,
   UserID VARCHAR(255) NOT NULL,
   PRIMARY KEY (AddressId)
-)
-ENGINE = INNODB;
+);
 
 
 ALTER TABLE Address 
