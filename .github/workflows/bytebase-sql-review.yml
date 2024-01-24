@@ -25,7 +25,11 @@ jobs:
 
             echo "token $TOKEN"
 
-
+            curl -s -w "%{http_code}" -X POST $API \
+            -H "X-SQL-Review-Token: $TOKEN" \
+            -H "Content-Type: application/json" \
+            -d $request_body
+            
           response=$(curl -s -w "%{http_code}" -X POST $API \
             -H "X-SQL-Review-Token: $TOKEN" \
             -H "Content-Type: application/json" \
