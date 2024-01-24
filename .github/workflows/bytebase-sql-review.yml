@@ -25,10 +25,10 @@ jobs:
 
             echo "token $TOKEN"
 
-            curl -v -s -w "%{http_code}" --location '$API' \
-            -H 'X-SQL-Review-Token: $TOKEN' \
+            curl -v -s -w "%{http_code}" --location '"$API"' \
+            -H '"X-SQL-Review-Token: $TOKEN"' \
             -H 'Content-Type: application/json' \
-            -d '$request_body'
+            -d '"$request_body"'
 
             echo "first curl"
 
