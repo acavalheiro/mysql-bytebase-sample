@@ -1,7 +1,7 @@
 on: [pull_request]
 jobs:
   bytebase-sql-review:
-    runs-on: VF-PT-023
+    runs-on: self-hosted
     name: SQL Review
     steps:
       - name: SQL advise
