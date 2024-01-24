@@ -28,7 +28,7 @@ jobs:
             curl -s -w "%{http_code}" --location POST $API \
             -H "X-SQL-Review-Token: $TOKEN" \
             -H "Content-Type: application/json" \
-            -d '$request_body'
+            -d $request_body
 
             echo "first curl"
 
